@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PhytoGuard.HomePage"
+    BackgroundColor="#101F18">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="12,8"
+                                 Spacing="12">
+
+                <!-- En-tête -->
+                <Grid ColumnDefinitions="*,Auto"
+                      Margin="0,12,0,8">
+
+                    <Label Text="✿ Phyto"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+
+                    <Label Grid.Column="1"
+                           Text="Guard"
+                           FontSize="13"
+                           FontAttributes="Bold"
+                           TextColor="#A4D6AE" />
+                </Grid>
+
+                <Label x:Name="GreetingLabel"
+                       Text="Bonjour et bienvenue"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Label Text="Voici vos cultures aujourd’hui."
+                       FontSize="13"
+                       TextColor="#B8C7BC"
+                       Margin="0,-6,0,4" />
+
+                <!-- Titre de la section et badge -->
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0"
+                           Text="Mes parcelles"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+
+                    <Border Grid.Column="1"
+                            BackgroundColor="#294833"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 10"
+                            Padding="9,4">
+                        <Label Text="À jour"
+                               FontSize="10"
+                               TextColor="#A4D6AE" />
+                    </Border>
+                </Grid>
+
+                <!-- Informations chargées depuis la parcelle enregistrée -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 14"
+                        Padding="12">
+
+                    <VerticalStackLayout Spacing="5">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label x:Name="ParcelNameLabel"
+                                   Grid.Column="0"
+                                   Text="Aucune parcelle enregistrée"
+                                   FontSize="14"
+                                   TextColor="White" />
+
+                            <Label x:Name="ParcelCropLabel"
+                                   Grid.Column="1"
+                                   Text="Culture non renseignée"
+                                   FontSize="12"
+                                   TextColor="#D5DED7" />
+                        </Grid>
+
+                        <Label x:Name="ParcelDateLabel"
+                               Text="Date d’enregistrement indisponible"
+                               FontSize="11"
+                               TextColor="#B8C7BC" />
+
+                        <Label x:Name="ObservationLabel"
+                               Text="Aucune observation enregistrée"
+                               FontSize="11"
+                               TextColor="#E7D58A" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Text="+ Ajouter une parcelle GPS"
+                        Clicked="OnAddParcelClicked"
+                        BackgroundColor="#294833"
+                        TextColor="White"
+                        CornerRadius="12"
+                        HeightRequest="46" />
+
+                <Button Text="+ Nouveau diagnostic"
+                        Clicked="OnNewDiagnosticClicked"
+                        BackgroundColor="#347A4C"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        HeightRequest="48" />
+
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 14"
+                        Padding="12">
+
+                    <VerticalStackLayout Spacing="6">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Synchronisation"
+                                   FontSize="13"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+
+                            <Label Grid.Column="1"
+                                   Text="À JOUR"
+                                   FontSize="9"
+                                   TextColor="#A4D6AE" />
+                        </Grid>
+
+                        <Label Text="Les données seront envoyées au retour du réseau."
+                               FontSize="11"
+                               TextColor="#B8C7BC" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 14"
+                        Padding="12">
+
+                    <VerticalStackLayout Spacing="5">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Position GPS enregistrée"
+                                   FontSize="13"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+
+                            <Label Grid.Column="1"
+                                   Text="Hors ligne"
+                                   FontSize="9"
+                                   TextColor="#A4D6AE" />
+                        </Grid>
+
+                        <Label Text="Coordonnées gardées sur le téléphone. Elles seront synchronisées au retour du réseau."
+                               FontSize="11"
+                               TextColor="#B8C7BC" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Pied de page fixé en bas -->
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*,*,*"
+              Padding="0,12,0,8"
+              BackgroundColor="#13251B">
+
+            <Label Grid.Column="0"
+                   Text="Accueil"
+                   FontSize="10"
+                   FontAttributes="Bold"
+                   TextColor="#A4D6AE"
+                   HorizontalOptions="Center" />
+
+            <Label Grid.Column="1"
+                   Text="Parcelles"
+                   FontSize="10"
+                   TextColor="#D5DED7"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnParcelsTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Grid.Column="2"
+                   Text="Historique"
+                   FontSize="10"
+                   TextColor="#D5DED7"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnHistoryTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Grid.Column="3"
+                   Text="Conseils"
+                   FontSize="10"
+                   TextColor="#D5DED7"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAdviceTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
