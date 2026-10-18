@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+    x:Class="PhytoGuard.ParcelGpsPage"
+    BackgroundColor="#101F18">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="12,8"
+                                 Spacing="10">
+
+                <Label Text="‹ Nouvelle parcelle"
+                       FontSize="17"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       Margin="0,12,0,4" />
+
+                <Label Text="Localiser la parcelle"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Label Text="Le GPS enregistre la position même sans internet."
+                       FontSize="12"
+                       TextColor="#B8C7BC"
+                       Margin="0,0,0,4" />
+
+                <!-- Grande carte GPS -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        HeightRequest="360"
+                        Padding="0">
+
+                    <Grid>
+                        <maps:Map x:Name="ParcelMap"
+                                  MapType="Street"
+                                  IsShowingUser="True"
+                                  HorizontalOptions="Fill"
+                                  VerticalOptions="Fill" />
+
+                        <Button Text="Localiser ma position"
+                                Clicked="OnGetLocationClicked"
+                                VerticalOptions="End"
+                                Margin="14"
+                                BackgroundColor="#347A4C"
+                                TextColor="White"
+                                CornerRadius="12"
+                                HeightRequest="46" />
+                    </Grid>
+                </Border>
+
+                <Label x:Name="GpsAccuracyLabel"
+                       Text="La précision s’affichera après localisation."
+                       FontSize="11"
+                       TextColor="#B8C7BC"
+                       HorizontalTextAlignment="Center" />
+
+                <!-- Coordonnées GPS -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="10">
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="COORDONNÉES GPS"
+                               FontSize="10"
+                               TextColor="#AAB9AD" />
+
+                        <Label x:Name="GpsCoordinatesLabel"
+                               Text="Appuyez sur « Localiser ma position »"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Nom de la parcelle -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="10,6">
+
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Nom de la parcelle"
+                               FontSize="11"
+                               TextColor="#AAB9AD" />
+
+                        <Entry x:Name="ParcelNameEntry"
+                               Placeholder="Ex. Parcelle Nord"
+                               FontSize="12"
+                               TextColor="White"
+                               PlaceholderColor="#829187"
+                               BackgroundColor="Transparent"
+                               HeightRequest="38" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Culture -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="10,6">
+
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Culture"
+                               FontSize="11"
+                               TextColor="#AAB9AD" />
+
+                        <Entry x:Name="CropEntry"
+                               Placeholder="Ex. Tomate"
+                               FontSize="12"
+                               TextColor="White"
+                               PlaceholderColor="#829187"
+                               BackgroundColor="Transparent"
+                               HeightRequest="38" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Text="Enregistrer hors ligne"
+                        Clicked="OnSaveParcelClicked"
+                        BackgroundColor="#347A4C"
+                        TextColor="White"
+                        FontSize="14"
+                        CornerRadius="12"
+                        HeightRequest="48" />
+
+                <Label Text="Les coordonnées seront gardées sur cet appareil."
+                       FontSize="10"
+                       TextColor="#B8C7BC"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,0,0,8" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Navigation basse -->
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*,*,*"
+              Padding="0,12,0,8"
+              BackgroundColor="#13251B">
+
+            <Label Grid.Column="0"
+                   Text="Accueil"
+                   FontSize="10"
+                   TextColor="#D5DED7"
+                   HorizontalOptions="Center" />
+
+            <Label Grid.Column="1"
+                   Text="Parcelles"
+                   FontSize="10"
+                   TextColor="#A4D6AE"
+                   HorizontalOptions="Center" />
+
+            <Label Grid.Column="2"
+                   Text="Historique"
+                   FontSize="10"
+                   TextColor="#D5DED7"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnHistoryTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Grid.Column="3"
+                   Text="Conseils"
+                   FontSize="10"
+                   TextColor="#D5DED7"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAdviceTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
