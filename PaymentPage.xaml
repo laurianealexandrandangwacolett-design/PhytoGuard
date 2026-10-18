@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PhytoGuard.PaymentPage"
+    BackgroundColor="#101F18">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="14">
+
+            <Label Text="‹ Paiement"
+                   FontSize="17"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <Label Text="Votre rendez-vous"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <Border BackgroundColor="#20362A"
+                    Stroke="#304B38"
+                    StrokeShape="RoundRectangle 14"
+                    Padding="12">
+                <VerticalStackLayout Spacing="7">
+                    <Label x:Name="ExpertLabel"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+
+                    <Label x:Name="SlotLabel"
+                           FontSize="12"
+                           TextColor="#B8C7BC" />
+
+                    <Label Text="Tarif de démonstration : 3 000 FCFA (à remplacer)"
+                           FontSize="12"
+                           TextColor="#A4D6AE" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Choisir un moyen de paiement"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <RadioButton x:Name="MobileMoneyOption"
+                         Content="Mobile Money"
+                         GroupName="PaymentMethod"
+                         IsChecked="True"
+                         TextColor="White"
+                         CheckedChanged="OnPaymentMethodChanged" />
+
+            <RadioButton x:Name="OrangeMoneyOption"
+                         Content="Orange Money"
+                         GroupName="PaymentMethod"
+                         TextColor="White"
+                         CheckedChanged="OnPaymentMethodChanged" />
+
+            <RadioButton x:Name="CardOption"
+                         Content="Carte bancaire"
+                         GroupName="PaymentMethod"
+                         TextColor="White"
+                         CheckedChanged="OnPaymentMethodChanged" />
+
+            <Entry x:Name="PaymentPhoneEntry"
+                   Placeholder="Numéro de téléphone"
+                   Keyboard="Telephone"
+                   TextColor="White"
+                   PlaceholderColor="#B8C7BC"
+                   BackgroundColor="#20362A"
+                   IsVisible="True" />
+
+            <Entry x:Name="CardEntry"
+                   Placeholder="Numéro de carte (simulation)"
+                   Keyboard="Numeric"
+                   IsVisible="False"
+                   TextColor="White"
+                   PlaceholderColor="#B8C7BC"
+                   BackgroundColor="#20362A" />
+
+            <Label x:Name="PaymentInfoLabel"
+                   Text="Paiement Mobile Money"
+                   TextColor="#B8C8BE" />
+
+            <Label Text="Écran de démonstration : aucun paiement réel ne sera effectué."
+                   FontSize="11"
+                   TextColor="#B8C7BC" />
+
+            <Button Text="Confirmer (simulation)"
+                    Clicked="OnPayClicked"
+                    BackgroundColor="#347A4C"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="48" />
+
+            <Label x:Name="PaymentStatusLabel"
+                   IsVisible="False"
+                   TextColor="#A4D6AE"
+                   FontAttributes="Bold" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
