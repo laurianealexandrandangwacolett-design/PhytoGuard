@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PhytoGuard.ExpertsPage"
+    BackgroundColor="#101F18">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <Label Text="‹ Services experts"
+                   FontSize="17"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <Label Text="Prendre rendez-vous"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <Label Text="Choisissez un spécialiste et un créneau pour examiner votre observation."
+                   FontSize="13"
+                   TextColor="#B8C7BC" />
+
+            <Border BackgroundColor="#20362A"
+                    Stroke="#304B38"
+                    StrokeShape="RoundRectangle 14"
+                    Padding="12">
+                <VerticalStackLayout Spacing="6">
+                    <RadioButton x:Name="AminaOption"
+                                 Content="Amina N. · Phytopathologie"
+                                 Value="Amina N."
+                                 GroupName="Experts"
+                                 CheckedChanged="OnExpertChanged"
+                                 TextColor="White" />
+                    <Label Text="Vérifiée · Appel vidéo · Français · 20 min"
+                           FontSize="11"
+                           TextColor="#A4D6AE" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="#20362A"
+                    Stroke="#304B38"
+                    StrokeShape="RoundRectangle 14"
+                    Padding="12">
+                <VerticalStackLayout Spacing="6">
+                    <RadioButton Content="Jean M. · Agronomie"
+                                 Value="Jean M."
+                                 GroupName="Experts"
+                                 CheckedChanged="OnExpertChanged"
+                                 TextColor="White" />
+                    <Label Text="Vérifié · Appel audio · Français · 30 min"
+                           FontSize="11"
+                           TextColor="#A4D6AE" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="#20362A"
+                    Stroke="#304B38"
+                    StrokeShape="RoundRectangle 14"
+                    Padding="12">
+                <VerticalStackLayout Spacing="6">
+                    <RadioButton Content="Sarah K. · Protection des cultures"
+                                 Value="Sarah K."
+                                 GroupName="Experts"
+                                 CheckedChanged="OnExpertChanged"
+                                 TextColor="White" />
+                    <Label Text="Vérifiée · Appel vidéo · Français · 20 min"
+                           FontSize="11"
+                           TextColor="#A4D6AE" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Choisissez un créneau"
+                   FontSize="14"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <Picker x:Name="SlotPicker"
+                    Title="Sélectionner un horaire"
+                    TextColor="White"
+                    TitleColor="#B8C7BC"
+                    BackgroundColor="#20362A" />
+
+            <Label Text="Le tarif sera affiché avant la confirmation du paiement."
+                   FontSize="11"
+                   TextColor="#B8C7BC" />
+
+            <Button Text="Continuer vers le paiement"
+                    Clicked="OnContinueClicked"
+                    BackgroundColor="#347A4C"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="48" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

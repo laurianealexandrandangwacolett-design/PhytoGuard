@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PhytoGuard.ConfirmationPage"
+    BackgroundColor="#101F18">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="18" Spacing="18">
+
+                <Label Text="✿ PhytoGuard"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeShape="RoundRectangle 16"
+                        Padding="20">
+                    <VerticalStackLayout Spacing="10"
+                                         HorizontalOptions="Center">
+                        <Label Text="✓"
+                               FontSize="36"
+                               TextColor="#74C58A"
+                               HorizontalTextAlignment="Center" />
+
+                        <Label Text="Rendez-vous confirmé"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center" />
+
+                        <Label Text="Votre rendez-vous est réservé. Paiement en mode simulation."
+                               TextColor="#B8C7BC"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label x:Name="WelcomeLabel"
+                       Text="À bientôt"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeShape="RoundRectangle 14"
+                        Padding="14">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="VOTRE RENDEZ-VOUS"
+                               TextColor="#B8C7BC" />
+
+                        <Label x:Name="SlotConfirmationLabel"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+
+                        <Label x:Name="ExpertConfirmationLabel"
+                               TextColor="#B8C7BC" />
+
+                        <Label x:Name="PaymentConfirmationLabel"
+                               TextColor="#B8C7BC" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Text="Voir mon compte"
+                        Clicked="OnAccountClicked"
+                        BackgroundColor="#347A4C"
+                        TextColor="White"
+                        CornerRadius="12"
+                        HeightRequest="48" />
+
+                <Label Text="Confirmation de démonstration : aucun paiement réel n’a été effectué."
+                       FontSize="12"
+                       TextColor="#B8C7BC"
+                       HorizontalTextAlignment="Center" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*,*,*"
+              Padding="6"
+              BackgroundColor="#0C1812">
+
+            <Label Grid.Column="0" Text="Accueil" TextColor="#B8C7BC"
+                   HorizontalTextAlignment="Center" />
+            <Label Grid.Column="1" Text="Parcelles" TextColor="#B8C7BC"
+                   HorizontalTextAlignment="Center" />
+            <Label Grid.Column="2" Text="Historique" TextColor="#B8C7BC"
+                   HorizontalTextAlignment="Center" />
+            <Label Grid.Column="3" Text="Compte" TextColor="#74C58A"
+                   HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAccountTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+
+    </Grid>
+</ContentPage>
