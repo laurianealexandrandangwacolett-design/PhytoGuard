@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PhytoGuard.RegisterPage"
+    BackgroundColor="#101F18">
+
+    <Grid RowDefinitions="Auto,*,Auto"
+          Padding="12,8">
+
+        <!-- Barre supérieure de la maquette -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto">
+            <Label Text="06:18"
+                   FontSize="10"
+                   TextColor="White" />
+
+            <Label Grid.Column="1"
+                   Text="●●●"
+                   FontSize="10"
+                   TextColor="#A4D6AE"
+                   HorizontalOptions="End"
+                   Margin="0,0,8,0" />
+
+            <Label Grid.Column="2"
+                   Text="99%"
+                   FontSize="10"
+                   TextColor="White"
+                   HorizontalOptions="End" />
+        </Grid>
+
+        <!-- Formulaire -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="0">
+
+                <!-- Nom de l’application -->
+                <Grid ColumnDefinitions="*,Auto,Auto"
+                      Margin="0,16,0,22">
+                    <Label Text="✿ Phyto"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+
+                    <Label Grid.Column="1"
+                           Text="Guard"
+                           FontSize="13"
+                           FontAttributes="Bold"
+                           TextColor="#A4D6AE"
+                           Margin="0,0,12,0" />
+
+                    
+                </Grid>
+
+                <Label Text="Créer mon compte"
+                       FontSize="23"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Label Text="Pour retrouver vos cultures et vos diagnostics."
+                       FontSize="12"
+                       TextColor="#B8C7BC"
+                       Margin="0,5,0,16" />
+
+                <!-- Champ Nom complet -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="10,6"
+                        Margin="0,0,0,8">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Nom Complet"
+                               FontSize="10"
+                               TextColor="#AAB9AD" />
+                       <Entry
+                       x:Name="NameEntry"
+                         Placeholder=""
+                         FontSize="12"
+                        TextColor="White"
+                       BackgroundColor="Transparent"
+                         HeightRequest="28" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Champ Téléphone -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="10,6"
+                        Margin="0,0,0,8">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Téléphone"
+                               FontSize="10"
+                               TextColor="#AAB9AD" />
+                        <Entry Placeholder=""
+                               FontSize="12"
+                               TextColor="White"
+                               PlaceholderColor="#D5DED7"
+                               Keyboard="Telephone"
+                               BackgroundColor="Transparent"
+                               HeightRequest="28" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Champ Mot de passe -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="10,6"
+                        Margin="0,0,0,8">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Créer un mot de passe"
+                               FontSize="10"
+                               TextColor="#AAB9AD" />
+                        <Entry Placeholder=""
+                               FontSize="12"
+                               TextColor="White"
+                               PlaceholderColor="#D5DED7"
+                               IsPassword="True"
+                               BackgroundColor="Transparent"
+                               HeightRequest="28" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="Un code de vérification sera envoyé par SMS"
+                       FontSize="10"
+                       TextColor="#D5DED7"
+                       Margin="0,0,0,18" />
+
+                <Button Text="Créer mon compte"
+                    Clicked="OnCreateAccountClicked"
+                        BackgroundColor="#347A4C"
+                        TextColor="White"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        HeightRequest="44" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bas de l’écran -->
+        <Grid Grid.Row="2"
+              ColumnDefinitions="*,*"
+              Margin="0,10,0,0">
+            <Label Text="Créer un compte"
+                   FontSize="10"
+                   TextColor="White" />
+            <Label Grid.Column="1"
+                   Text="Inscription"
+                   FontSize="10"
+                   TextColor="#A4D6AE"
+                   HorizontalOptions="End" />
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PhytoGuard.LoginPage"
+    BackgroundColor="#101F18">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <!-- Contenu principal, défilable si nécessaire -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="16,20"
+                                 Spacing="14">
+
+                <!-- Nom de l’application -->
+                <Grid ColumnDefinitions="*,Auto"
+                      Margin="0,0,0,12">
+
+                    <Label Text="✿ Phyto"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+
+                    <Label Grid.Column="1"
+                           Text="Guard"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#A4D6AE" />
+                </Grid>
+
+                <Label Text="Heureuse de vous revoir"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Label Text="Connectez-vous pour suivre vos parcelles."
+                       FontSize="14"
+                       TextColor="#B8C7BC"
+                       Margin="0,0,0,8" />
+
+                <!-- Téléphone -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="12,8">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Téléphone"
+                               FontSize="12"
+                               TextColor="#AAB9AD" />
+
+                        <Entry x:Name="PhoneEntry"
+                               Placeholder="Votre numéro de téléphone"
+                               FontSize="14"
+                               TextColor="White"
+                               PlaceholderColor="#829187"
+                               Keyboard="Telephone"
+                               BackgroundColor="Transparent" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Mot de passe -->
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="12,8">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Mot de passe"
+                               FontSize="12"
+                               TextColor="#AAB9AD" />
+
+                        <Entry x:Name="PasswordEntry"
+                               Placeholder="Votre mot de passe"
+                               FontSize="14"
+                               TextColor="White"
+                               PlaceholderColor="#829187"
+                               IsPassword="True"
+                               BackgroundColor="Transparent" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Text="Mot de passe oublié ?"
+                        Clicked="OnForgotPasswordClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#B8C7BC"
+                        FontSize="13"
+                        HorizontalOptions="End" />
+
+                <Button Text="Se connecter"
+                        Clicked="OnLoginClicked"
+                        BackgroundColor="#347A4C"
+                        TextColor="White"
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        HeightRequest="50" />
+
+                <Label Text="Pas encore de compte ? Créez-en un."
+                       FontSize="13"
+                       TextColor="#B8C7BC"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,4,0,0" />
+
+                <Button Text="Créer mon compte"
+                        Clicked="OnCreateAccountClicked"
+                        BackgroundColor="#20362A"
+                        TextColor="White"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        HeightRequest="48" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Pied de page fixé en bas -->
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*"
+              Padding="16,14"
+              BackgroundColor="#101F18">
+
+            <Label Grid.Column="0"
+                   Text="Connexion"
+                   TextColor="#A4D6AE"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+
+            <Label Grid.Column="1"
+                   Text="Compte"
+                   TextColor="#B8C7BC"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAccountTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
