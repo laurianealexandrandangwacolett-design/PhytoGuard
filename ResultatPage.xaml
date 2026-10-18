@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PhytoGuard.ResultPage"
+    BackgroundColor="#101F18">
+
+    <Grid RowDefinitions="*,Auto"
+          Padding="12,8">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="10">
+
+                <Grid ColumnDefinitions="*,Auto"
+                      Margin="0,12,0,4">
+                    <Label Text="‹ Résultat"
+                           FontSize="17"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Grid.Column="1"
+                           Text="Résultat"
+                           FontSize="11"
+                           TextColor="#D5DED7" />
+                </Grid>
+
+                <Border BackgroundColor="#463D20"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 10"
+                        Padding="9,6">
+                    <Label Text="Aucune analyse automatique n’a été effectuée."
+                           FontSize="11"
+                           FontAttributes="Bold"
+                           TextColor="#F3D273" />
+                </Border>
+
+                <Label Text="Résultat à confirmer"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Label x:Name="ParcelCropLabel"
+                       Text="Culture et parcelle"
+                       TextColor="#B8C7BC" />
+
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 16"
+                        HeightRequest="190"
+                        Padding="4">
+                    <Grid>
+                        <Image x:Name="PhotoPreview"
+                               Aspect="AspectFit"
+                               IsVisible="False" />
+                        <Label x:Name="NoPhotoLabel"
+                               Text="Aucune photo enregistrée"
+                               TextColor="#B8C7BC"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Label Text="Confiance du diagnostic"
+                       FontSize="13"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Label Text="Non disponible : le modèle de diagnostic n’est pas intégré."
+                       FontSize="11"
+                       TextColor="#B8C7BC" />
+
+                <Label Text="Symptômes sélectionnés"
+                       FontSize="13"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Label x:Name="SymptomsLabel"
+                       Text="Aucun symptôme enregistré."
+                       FontSize="11"
+                       TextColor="#B8C7BC" />
+
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 14"
+                        Padding="11">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="À propos du diagnostic"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+                        <Label Text="Cette version ne peut pas encore identifier une maladie à partir de la photo. Demandez l’avis d’un spécialiste avant tout traitement."
+                               FontSize="11"
+                               TextColor="#B8C7BC" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="#20362A"
+                        Stroke="#304B38"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 14"
+                        Padding="11">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Gestes conseillés"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+                        <Label Text="Surveillez les feuilles atteintes et demandez confirmation à un spécialiste avant d’appliquer un traitement."
+                               FontSize="11"
+                               TextColor="#B8C7BC" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Text="Consulter un spécialiste"
+                        Clicked="OnBookExpertClicked"
+                        BackgroundColor="#347A4C"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        HeightRequest="48"
+                        Margin="0,4,0,12" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*,*,*"
+              Padding="0,12,0,2"
+              BackgroundColor="#13251B">
+
+            <Label Text="Diagnostic"
+                   FontSize="10"
+                   TextColor="#D5DED7"
+                   HorizontalOptions="Center" />
+
+            <Label Grid.Column="1"
+                   Text="Fiche"
+                   FontSize="10"
+                   FontAttributes="Bold"
+                   TextColor="#A4D6AE"
+                   HorizontalOptions="Center" />
+
+            <Label Grid.Column="2"
+                   Text="Historique"
+                   FontSize="10"
+                   TextColor="#D5DED7"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnHistoryTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Grid.Column="3"
+                   Text="Conseils"
+                   FontSize="10"
+                   TextColor="#D5DED7"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAdviceTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+
+    </Grid>
+</ContentPage>
