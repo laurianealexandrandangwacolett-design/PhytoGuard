@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:PhytoGuard.Controls"
+             x:Class="PhytoGuard.Pages.LoginPage" Title="Connexion" Shell.NavBarIsVisible="True">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Heureuse de vous revoir" Style="{StaticResource H1}" />
+            <Label Text="Connectez-vous pour suivre vos parcelles." Style="{StaticResource Muted}" />
+            <controls:LabeledEntry Title="Téléphone" Keyboard="Telephone" Text="{Binding Phone}" />
+            <controls:LabeledEntry Title="Mot de passe" IsPassword="True" Text="{Binding Password}" />
+            <Label Text="Mot de passe oublié ?" Style="{StaticResource Muted}" HorizontalOptions="End">
+                <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding ForgotCommand}" /></Label.GestureRecognizers>
+            </Label>
+            <Label Text="{Binding ErrorMessage}" Style="{StaticResource ErrorLabel}" />
+            <Button Text="Se connecter" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}" />
+            <Label Text="Pas encore de compte ? Créez-en un." Style="{StaticResource Muted}" HorizontalOptions="Center" />
+            <Button Text="Créer mon compte" Style="{StaticResource SecondaryButton}" Command="{Binding GoRegisterCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

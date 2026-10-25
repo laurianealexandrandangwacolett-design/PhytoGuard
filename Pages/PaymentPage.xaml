@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhytoGuard.Pages.PaymentPage" Title="Paiement" Shell.NavBarIsVisible="True">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Votre rendez-vous" Style="{StaticResource H1}" />
+            <Border Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="3">
+                    <Label Text="{Binding ExpertName}" FontAttributes="Bold" />
+                    <Label Text="{Binding Slot}" Style="{StaticResource Muted}" />
+                    <Label Text="{Binding PriceText}" Style="{StaticResource Muted}" TextColor="{StaticResource PrimaryLight}" />
+                </VerticalStackLayout>
+            </Border>
+            <Label Text="Choisir un moyen de paiement" FontAttributes="Bold" FontSize="16" />
+            <VerticalStackLayout RadioButtonGroup.GroupName="payment" RadioButtonGroup.SelectedValue="{Binding Method}">
+                <RadioButton Content="Mobile Money" Value="Mobile Money" />
+                <RadioButton Content="Orange Money" Value="Orange Money" />
+                <RadioButton Content="Carte bancaire" Value="Carte bancaire" />
+            </VerticalStackLayout>
+            <Border Style="{StaticResource CardStyle}" Padding="12,2" IsVisible="{Binding NeedsPhone}">
+                <Entry Placeholder="Numéro de téléphone" Keyboard="Telephone" Text="{Binding PhoneNumber}" />
+            </Border>
+            <Label Text="{Binding PaymentLabel}" Style="{StaticResource Muted}" />
+            <Label Text="Écran de démonstration : aucun paiement réel ne sera effectué." Style="{StaticResource Muted}" FontSize="11" />
+            <Label Text="{Binding ErrorMessage}" Style="{StaticResource ErrorLabel}" />
+            <Button Text="Confirmer (simulation)" Style="{StaticResource PrimaryButton}" Command="{Binding ConfirmCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

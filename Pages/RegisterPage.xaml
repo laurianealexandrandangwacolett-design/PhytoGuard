@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:PhytoGuard.Controls"
+             x:Class="PhytoGuard.Pages.RegisterPage" Title="Créer un compte" Shell.NavBarIsVisible="True">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Créer mon compte" Style="{StaticResource H1}" />
+            <Label Text="Pour retrouver vos cultures et vos diagnostics." Style="{StaticResource Muted}" />
+            <controls:LabeledEntry Title="Nom complet" Text="{Binding FullName}" />
+            <controls:LabeledEntry Title="Téléphone" Keyboard="Telephone" Text="{Binding Phone}" />
+            <controls:LabeledEntry Title="Créer un mot de passe" IsPassword="True" Text="{Binding Password}" />
+            <Label Text="Un code de vérification sera envoyé par SMS" Style="{StaticResource Muted}" />
+            <Label Text="{Binding ErrorMessage}" Style="{StaticResource ErrorLabel}" />
+            <Button Text="Créer mon compte" Style="{StaticResource PrimaryButton}" Command="{Binding RegisterCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhytoGuard.Controls.BottomNav">
+    <Border BackgroundColor="{StaticResource Card}" Stroke="Transparent" StrokeThickness="0" StrokeShape="Rectangle" Padding="4,8">
+        <Grid ColumnDefinitions="*,*,*,*">
+            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                <VerticalStackLayout.GestureRecognizers><TapGestureRecognizer Tapped="OnTapped" CommandParameter="home" /></VerticalStackLayout.GestureRecognizers>
+                <Label x:Name="I1" Text="&#x1F3E0;" FontSize="20" HorizontalTextAlignment="Center" />
+                <Label x:Name="T1" Text="Accueil" FontSize="11" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                <VerticalStackLayout.GestureRecognizers><TapGestureRecognizer Tapped="OnTapped" CommandParameter="parcels" /></VerticalStackLayout.GestureRecognizers>
+                <Label x:Name="I2" Text="&#x1F331;" FontSize="20" HorizontalTextAlignment="Center" />
+                <Label x:Name="T2" Text="Parcelles" FontSize="11" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="2" Spacing="2">
+                <VerticalStackLayout.GestureRecognizers><TapGestureRecognizer Tapped="OnTapped" CommandParameter="history" /></VerticalStackLayout.GestureRecognizers>
+                <Label x:Name="I3" Text="&#x1F552;" FontSize="20" HorizontalTextAlignment="Center" />
+                <Label x:Name="T3" Text="Historique" FontSize="11" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="3" Spacing="2">
+                <VerticalStackLayout.GestureRecognizers><TapGestureRecognizer Tapped="OnTapped" CommandParameter="advice" /></VerticalStackLayout.GestureRecognizers>
+                <Label x:Name="I4" Text="&#x1F4A1;" FontSize="20" HorizontalTextAlignment="Center" />
+                <Label x:Name="T4" Text="Conseils" FontSize="11" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+        </Grid>
+    </Border>
+</ContentView>

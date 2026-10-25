@@ -1,102 +1,54 @@
-# PhytoGuard
+# PhytoGuard — application mobile .NET MAUI (C#)
 
-PhytoGuard est une application développée avec .NET MAUI pour accompagner les utilisateurs dans le suivi de leurs cultures. Elle permet de renseigner une parcelle, de noter des symptômes et de préparer une demande de conseil auprès d’un spécialiste.
+Assistant agricole : identifier une maladie des cultures à partir d'une photo et de symptômes guidés, puis agir rapidement — **même sans réseau**.
 
-> **Important :** les informations affichées par l’application ne remplacent pas le diagnostic d’un professionnel agricole. Le modèle d’intelligence artificielle de reconnaissance des maladies n’est pas encore intégré à l’application.
+## Fonctionnalités (cahier des charges)
+| Fonctionnalité | Où dans le code |
+|---|---|
+| Prise de photo (caméra / galerie) | `Pages/DiagPhotoPage`, `Services/DeviceServices.cs` (PhotoService, MediaPicker) |
+| Symptômes guidés | `Pages/DiagSymptomsPage`, `DiagnosisService.Symptoms` |
+| Fiche de maladie | `Pages/DiseaseDetailPage`, données dans `Resources/Raw/diseases.json` |
+| Conseils de traitement | Fiche de maladie + onglet **Conseils** |
+| Historique de parcelle | Onglet **Historique**, tables SQLite `Parcel` / `DiagnosticRecord` |
+| Mode hors ligne | SQLite locale, diagnostic par règles embarqué, GPS hors ligne, `SyncService` (envoi au retour du réseau) |
+| Extras (écrans fournis) | Inscription / connexion / mot de passe oublié, parcelle GPS, rendez-vous spécialiste, paiement simulé |
 
-## Sommaire
+## Parcours
+`Bienvenue → Connexion / Inscription → Accueil (onglets Accueil · Parcelles · Historique · Conseils)`
+Diagnostic : `Culture → Photo → Symptômes → Résultat → Fiche de maladie → Rendez-vous → Paiement (simulation)`
 
-- [Objectifs](#objectifs)
-- [Fonctionnalités](#fonctionnalités)
-- [Parcours utilisateur](#parcours-utilisateur)
-- [Technologies](#technologies)
-- [Prérequis](#prérequis)
-- [Installation et lancement](#installation-et-lancement)
-- [GPS et cartes](#gps-et-cartes)
-- [Données enregistrées](#données-enregistrées)
-- [Limites connues](#limites-connues)
-- [Sécurité et confidentialité](#sécurité-et-confidentialité)
-- [Améliorations envisagées](#améliorations-envisagées)
-- [Captures d’écran](#captures-décran)
-- [Auteur et contexte](#auteur-et-contexte)
+## Architecture
+MVVM avec CommunityToolkit.Mvvm, injection de dépendances (`MauiProgram.cs`), navigation Shell (`AppShell.xaml`), SQLite (sqlite-net-pcl).
+```
+Models/      entités SQLite + modèles (Disease, DiagnosisResult…)
+Services/    DatabaseService, AuthService, DiagnosisService, SyncService, Location/Photo
+ViewModels/  un ViewModel par écran
+Pages/       XAML des écrans   |  Controls/  LabeledEntry, StepBar
+```
 
-## Objectifs
+## Lancer le projet
+Prérequis : Visual Studio 2022 17.8+ avec la charge de travail **.NET MAUI** (.NET 8).
+1. Ouvrir `PhytoGuard.csproj` (ou le dossier) dans Visual Studio.
+2. Choisir la cible **Android Emulator** (ou *Windows Machine*), puis F5.
+3. Ligne de commande : `dotnet build -f net8.0-android` puis `dotnet build -t:Run -f net8.0-android`.
 
-PhytoGuard vise à faciliter le suivi quotidien des cultures en regroupant dans une même application :
+## Mode simulation (à dire dans la vidéo / le PDF)
+- Le **SMS de vérification** n'est pas réellement envoyé : le code s'affiche dans une alerte (`AuthService.SendResetCodeAsync`). Brancher une passerelle SMS pour la production.
+- Le **paiement** est une simulation (tarif de démonstration 3 000 FCFA, aucun débit).
+- La **synchronisation** marque les données comme envoyées (`SyncService.SyncAsync`) : remplacer le `TODO` par un appel API REST.
 
-- les informations d’une parcelle ;
-- les photos de plantes ;
-- les symptômes observés ;
-- l’historique des observations ;
-- des conseils agricoles ;
-- une possibilité de contacter ou consulter un spécialiste.
+## IA / ONNX (optionnel, en cours)
+Le diagnostic fonctionne déjà par règles (symptômes → maladies). Pour ajouter un modèle d'image :
+1. Entraîner et exporter avec `ml/train_export_onnx.py` (Google Colab) → `phytoguard.onnx`.
+2. Copier le fichier dans `Resources/Raw/`.
+3. Dans `PhytoGuard.csproj`, décommenter `USE_ONNX` et ajouter `Microsoft.ML.OnnxRuntime` + `SixLabors.ImageSharp`.
+4. Vérifier que `Labels` dans `Services/OnnxImageClassifier.cs` suit l'ordre des classes d'entraînement.
+Le score final combine alors la probabilité du modèle et les symptômes cochés.
 
-## Fonctionnalités
-
-### Parcelles
-
-- Saisie du nom d’une parcelle.
-- Saisie de la culture cultivée.
-- Récupération de la position GPS de l’appareil, selon les autorisations accordées.
-- Affichage des informations enregistrées dans les pages de l’application.
-
-### Diagnostic guidé
-
-- Prise d’une photo avec la caméra ou sélection d’une image dans la galerie.
-- Affichage de la photo sélectionnée.
-- Sélection de symptômes, par exemple les taches jaunes, les feuilles sèches ou la poudre blanche.
-- Saisie de la période depuis laquelle les symptômes sont observés.
-- Présentation d’une page récapitulative.
-
-La photo et les symptômes servent actuellement à documenter une observation. Ils ne produisent pas encore une identification automatique fiable de la maladie.
-
-### Navigation
-
-L’application comprend des pages consacrées à l’accueil, aux parcelles, à l’historique, aux conseils, au diagnostic et aux spécialistes. La navigation entre ces pages dépend de la configuration des routes dans le projet.
-
-### Paiement et rendez-vous
-
-Les écrans de rendez-vous et de paiement sont prévus pour présenter le parcours de réservation. Si une simulation de paiement est utilisée, elle ne débite pas d’argent et ne constitue pas une intégration à un prestataire de paiement réel.
-
-## Parcours utilisateur
-
-Un parcours typique dans l’application est le suivant :
-
-1. Enregistrer une parcelle et sa culture.
-2. Consulter les informations de la parcelle.
-3. Commencer un diagnostic.
-4. Prendre ou choisir une photo.
-5. Indiquer les symptômes et leur durée.
-6. Consulter le récapitulatif et, si nécessaire, demander conseil à un spécialiste.
-
-## Technologies
-
-- **C#**
-- **.NET MAUI**
-- **XAML**
-- **Preferences de .NET MAUI** pour certaines données locales
-- **MediaPicker** pour prendre ou sélectionner une photo
-- **Geolocation** pour récupérer la position de l’appareil
-- **Shell** pour la navigation entre les pages
-
-Les versions exactes du SDK et des dépendances sont indiquées dans les fichiers du projet, notamment le fichier `.csproj`.
-
-## Prérequis
-
-Pour ouvrir et lancer le projet, il faut installer :
-
-- le SDK .NET compatible avec le fichier `.csproj` ;
-- Visual Studio avec la charge de travail **Développement d’applications .NET Multi-platform App UI** pour MAUI, ou l’environnement MAUI configuré utilisé par le projet ;
-- les outils correspondant à la plateforme ciblée, par exemple Windows ou Android.
-
-La compilation pour Android peut aussi nécessiter Android SDK, les outils de compilation Android et un émulateur ou un appareil physique.
-
-## Installation et lancement
-
-### Cloner le dépôt
-
-Remplace `URL_DU_DEPOT` par l’adresse de ton dépôt GitHub :
-
-```bash
-git clone URL_DU_DEPOT
-cd PhytoGuard
+## Dépôt GitHub (un commit par phase)
+```
+git init
+git add Models Services ViewModels/AuthViewModels.cs Pages/Welcome* Pages/Login* Pages/Register* Pages/Forgot* Controls App.xaml App.xaml.cs AppShell.xaml AppShell.xaml.cs MauiProgram.cs PhytoGuard.csproj Platforms Resources .gitignore
+git commit -m "Phase A : interfaces principales, connexion et inscription"
+# puis Phase B : navigation, accueil, parcelles ; Phase C : diagnostic ; puis historique/conseils, rendez-vous, paiement, GPS
+```

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns:controls="clr-namespace:PhytoGuard.Controls" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhytoGuard.Pages.HomePage" Title="Accueil">
+    <Grid RowDefinitions="*,Auto">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="{Binding Greeting}" Style="{StaticResource H1}" VerticalOptions="Center" />
+                <Button Grid.Column="1" Text="Déconnexion" Style="{StaticResource SecondaryButton}"
+                        HeightRequest="38" FontSize="12" Padding="14,0" VerticalOptions="Center"
+                        Command="{Binding LogoutCommand}" />
+            </Grid>
+            <Label Text="Voici vos cultures aujourd'hui." Style="{StaticResource Muted}" />
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="Mes parcelles" FontAttributes="Bold" FontSize="16" VerticalOptions="Center" />
+                <Border Grid.Column="1" Style="{StaticResource CardStyle}" Padding="10,3">
+                    <Label Text="{Binding SyncBadge}" FontSize="11" TextColor="{StaticResource PrimaryLight}" />
+                </Border>
+            </Grid>
+            <Label Text="Aucune parcelle pour le moment." Style="{StaticResource Muted}">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding HasParcels}" Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <VerticalStackLayout Spacing="8" BindableLayout.ItemsSource="{Binding Parcels}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="3">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Text="{Binding Crop}" Style="{StaticResource Muted}" />
+                                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding LastCheckText}" Style="{StaticResource Muted}" />
+                                <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ReviewText}" FontSize="12"
+                                       TextColor="{StaticResource Warn}" IsVisible="{Binding HasReview}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Button Text="+ Ajouter une parcelle GPS" Style="{StaticResource SecondaryButton}" Command="{Binding AddParcelCommand}" />
+            <Button Text="+ Nouveau diagnostic" Style="{StaticResource PrimaryButton}" Command="{Binding NewDiagnosticCommand}" />
+            <Border Style="{StaticResource CardStyle}">
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="4">
+                    <Label Text="Synchronisation" FontAttributes="Bold" />
+                    <Label Grid.Column="1" Text="{Binding SyncBadge}" FontSize="11" TextColor="{StaticResource PrimaryLight}" />
+                    <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding SyncText}" Style="{StaticResource Muted}" />
+                </Grid>
+            </Border>
+            <Border Style="{StaticResource CardStyle}">
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="4">
+                    <Label Text="Position GPS enregistrée" FontAttributes="Bold" />
+                    <Label Grid.Column="1" Text="{Binding NetworkBadge}" FontSize="11" Style="{StaticResource Muted}" />
+                    <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding GpsText}" Style="{StaticResource Muted}" />
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+    <controls:BottomNav Grid.Row="1" Current="home" />
+    </Grid>
+</ContentPage>

@@ -1,16 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using PhytoGuard.Services;
 
 namespace PhytoGuard;
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
-	}
-
-	protected override Window CreateWindow(IActivationState? activationState)
-	{
-		return new Window(new AppShell());
-	}
+    // SyncService est injecté pour démarrer l'écoute du réseau dès le lancement.
+    public App(SyncService sync)
+    {
+        InitializeComponent();
+        MainPage = new AppShell();
+    }
 }

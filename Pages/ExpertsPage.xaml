@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:PhytoGuard.ViewModels"
+             x:Class="PhytoGuard.Pages.ExpertsPage" Title="Services experts" Shell.NavBarIsVisible="True">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Prendre rendez-vous" Style="{StaticResource H1}" />
+            <Label Text="Choisissez un spécialiste et un créneau pour examiner votre observation." Style="{StaticResource Muted}" />
+            <VerticalStackLayout Spacing="8" BindableLayout.ItemsSource="{Binding Experts}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ExpertsViewModel}}, Path=SelectCommand}" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="3">
+                                <Label Text="{Binding Marker}" FontSize="18" TextColor="{StaticResource PrimaryLight}" VerticalOptions="Center" />
+                                <Label Grid.Column="1" Text="{Binding Title}" FontAttributes="Bold" />
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Subtitle}" Style="{StaticResource Muted}" TextColor="{StaticResource PrimaryLight}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Label Text="Choisissez un créneau" FontAttributes="Bold" />
+            <Border Style="{StaticResource CardStyle}" Padding="12,4">
+                <Picker Title="Sélectionner un horaire" ItemsSource="{Binding Slots}" SelectedItem="{Binding SelectedSlot}" />
+            </Border>
+            <Label Text="Le tarif sera affiché avant la confirmation du paiement." Style="{StaticResource Muted}" />
+            <Label Text="{Binding ErrorMessage}" Style="{StaticResource ErrorLabel}" />
+            <Button Text="Continuer vers le paiement" Style="{StaticResource PrimaryButton}" Command="{Binding ContinueCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns:controls="clr-namespace:PhytoGuard.Controls" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:PhytoGuard.ViewModels"
+             x:Class="PhytoGuard.Pages.HistoryPage" Title="Historique">
+    <Grid RowDefinitions="*,Auto"><ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="🕒 Historique" Style="{StaticResource H1}" />
+            <Label Text="{Binding ParcelsTitle}" FontAttributes="Bold" FontSize="16" />
+            <Label Text="{Binding ParcelsHint}" Style="{StaticResource Muted}" />
+            <VerticalStackLayout Spacing="8" BindableLayout.ItemsSource="{Binding Parcels}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="3">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Text="{Binding Crop}" Style="{StaticResource Muted}" />
+                                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding LastCheckText}" Style="{StaticResource Muted}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Label Text="Observations récentes" FontAttributes="Bold" FontSize="16" Margin="0,8,0,0" />
+            <Label Text="{Binding RecordsHint}" Style="{StaticResource Muted}" />
+            <VerticalStackLayout Spacing="8" BindableLayout.ItemsSource="{Binding Records}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:HistoryViewModel}}, Path=OpenCommand}" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="3">
+                                <Label Text="{Binding DiseaseName}" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Text="{Binding ConfidenceText}" TextColor="{StaticResource PrimaryLight}" />
+                                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Summary}" Style="{StaticResource Muted}" />
+                                <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding DateText}" Style="{StaticResource Muted}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView><controls:BottomNav Grid.Row="1" Current="history" /></Grid>
+</ContentPage>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:PhytoGuard.Controls"
+             x:Class="PhytoGuard.Pages.DiagCulturePage" Title="Nouveau diagnostic" Shell.NavBarIsVisible="True">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <controls:StepBar Current="1" />
+            <Label Text="Quelle culture ?" Style="{StaticResource H1}" />
+            <Label Text="Choisissez une parcelle ou directement la culture à diagnostiquer." Style="{StaticResource Muted}" />
+            <Border Style="{StaticResource CardStyle}" Padding="12,8">
+                <VerticalStackLayout>
+                    <Label Text="Parcelle (facultatif)" Style="{StaticResource Muted}" FontSize="11" />
+                    <Picker Title="Choisir une parcelle" ItemsSource="{Binding Parcels}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedParcel}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Style="{StaticResource CardStyle}" Padding="12,8">
+                <VerticalStackLayout>
+                    <Label Text="Culture" Style="{StaticResource Muted}" FontSize="11" />
+                    <Picker Title="Choisir la culture" ItemsSource="{Binding Crops}" SelectedItem="{Binding Crop}" />
+                </VerticalStackLayout>
+            </Border>
+            <Label Text="{Binding ErrorMessage}" Style="{StaticResource ErrorLabel}" />
+            <Button Text="Continuer" Style="{StaticResource PrimaryButton}" Command="{Binding NextCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

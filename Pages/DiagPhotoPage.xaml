@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:PhytoGuard.Controls"
+             x:Class="PhytoGuard.Pages.DiagPhotoPage" Title="Nouveau diagnostic" Shell.NavBarIsVisible="True">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <controls:StepBar Current="2" />
+            <Label Text="Photographier la plante" Style="{StaticResource H1}" />
+            <Label Text="Cadrez une feuille ou les symptômes visibles." Style="{StaticResource Muted}" />
+            <Border Style="{StaticResource CardStyle}" HeightRequest="220" Padding="0">
+                <Grid>
+                    <Label Text="Votre photo apparaîtra ici" Style="{StaticResource Muted}" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding HasPhoto}" Value="True">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Image Source="{Binding Photo}" Aspect="AspectFill" IsVisible="{Binding HasPhoto}" />
+                </Grid>
+            </Border>
+            <Border Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Pour une photo nette" FontAttributes="Bold" FontSize="13" />
+                    <Label Text="Placez la feuille à la lumière et évitez le flou." Style="{StaticResource Muted}" />
+                </VerticalStackLayout>
+            </Border>
+            <Label Text="{Binding ErrorMessage}" Style="{StaticResource ErrorLabel}" />
+            <Button Text="Prendre une photo" Style="{StaticResource PrimaryButton}" Command="{Binding TakeCommand}" />
+            <Button Text="Choisir dans la galerie" Style="{StaticResource SecondaryButton}" Command="{Binding PickCommand}" />
+            <Label Text="La photo est gardée sur votre téléphone." Style="{StaticResource Muted}" HorizontalOptions="Center" />
+            <Button Text="Continuer" Style="{StaticResource PrimaryButton}" Command="{Binding NextCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

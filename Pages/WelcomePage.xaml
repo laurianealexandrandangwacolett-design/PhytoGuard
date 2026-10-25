@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhytoGuard.Pages.WelcomePage" Title="Bienvenue">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+            <Border StrokeShape="RoundRectangle 18" Stroke="Transparent" HeightRequest="190">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#F1E8B0" Offset="0" />
+                        <GradientStop Color="#A8C97A" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Image Source="leaf.png" HeightRequest="120" HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+            <Label Text="Des cultures en meilleure santé" Style="{StaticResource H1}" />
+            <Label Text="Repérez les problèmes et trouvez les bons gestes pour vos cultures." Style="{StaticResource Muted}" />
+            <Border Style="{StaticResource CardStyle}">
+                <Label Text="Photo · Conseils · Suivi de parcelle" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+            </Border>
+            <Label Text="Votre assistant agricole sur le terrain." Style="{StaticResource Muted}" />
+            <Button Text="Se connecter" Style="{StaticResource PrimaryButton}" Command="{Binding GoLoginCommand}" />
+            <Button Text="Créer mon compte" Style="{StaticResource SecondaryButton}" Command="{Binding GoRegisterCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

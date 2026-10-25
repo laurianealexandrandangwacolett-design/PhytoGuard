@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhytoGuard.Pages.DiseaseDetailPage" Title="Fiche de maladie" Shell.NavBarIsVisible="True">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label Text="{Binding Disease.Name}" Style="{StaticResource H1}" FontSize="22" />
+            <Label Text="{Binding Disease.SubTitle}" TextColor="{StaticResource PrimaryLight}" />
+            <Border Style="{StaticResource CardStyle}"><VerticalStackLayout Spacing="4">
+                <Label Text="Description" FontAttributes="Bold" />
+                <Label Text="{Binding Disease.Description}" Style="{StaticResource Muted}" FontSize="13" />
+            </VerticalStackLayout></Border>
+            <Border Style="{StaticResource CardStyle}"><VerticalStackLayout Spacing="4">
+                <Label Text="Symptômes" FontAttributes="Bold" />
+                <Label Text="{Binding SymptomsText}" Style="{StaticResource Muted}" FontSize="13" />
+            </VerticalStackLayout></Border>
+            <Border Style="{StaticResource CardStyle}"><VerticalStackLayout Spacing="4">
+                <Label Text="Causes" FontAttributes="Bold" />
+                <Label Text="{Binding Disease.Causes}" Style="{StaticResource Muted}" FontSize="13" />
+            </VerticalStackLayout></Border>
+            <Border Style="{StaticResource CardStyle}"><VerticalStackLayout Spacing="4">
+                <Label Text="Conseils de traitement" FontAttributes="Bold" />
+                <Label Text="{Binding Disease.TreatmentsText}" Style="{StaticResource Muted}" FontSize="13" />
+            </VerticalStackLayout></Border>
+            <Border Style="{StaticResource CardStyle}"><VerticalStackLayout Spacing="4">
+                <Label Text="Prévention" FontAttributes="Bold" />
+                <Label Text="{Binding Disease.PreventionText}" Style="{StaticResource Muted}" FontSize="13" />
+            </VerticalStackLayout></Border>
+            <Label Text="Conseils indicatifs : lisez toujours l'étiquette des produits et demandez l'avis d'un technicien agricole." Style="{StaticResource Muted}" />
+            <Button Text="Consulter un spécialiste" Style="{StaticResource PrimaryButton}" Command="{Binding ExpertsCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

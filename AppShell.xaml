@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="PhytoGuard.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:PhytoGuard"
-    Title="PhytoGuard">
+<Shell x:Class="PhytoGuard.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:PhytoGuard.Pages"
+       Shell.FlyoutBehavior="Disabled"
+       Shell.BackgroundColor="{StaticResource Bg}"
+       Shell.ForegroundColor="White"
+       Shell.TitleColor="White"
+       Shell.NavBarIsVisible="False"
+       Shell.TabBarIsVisible="False">
 
-    <ShellContent
-        Title="Bienvenue"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <ShellContent Route="welcome" ContentTemplate="{DataTemplate pages:WelcomePage}" />
 
+    <!-- Plus de TabBar : la navigation se fait avec la barre du bas (Controls/BottomNav) -->
+    <ShellContent Title="Accueil" Route="home" ContentTemplate="{DataTemplate pages:HomePage}" />
+    <ShellContent Title="Parcelles" Route="parcels" ContentTemplate="{DataTemplate pages:ParcelsPage}" />
+    <ShellContent Title="Historique" Route="history" ContentTemplate="{DataTemplate pages:HistoryPage}" />
+    <ShellContent Title="Conseils" Route="advice" ContentTemplate="{DataTemplate pages:AdvicePage}" />
 </Shell>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns:controls="clr-namespace:PhytoGuard.Controls" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhytoGuard.Pages.ParcelsPage" Title="Parcelles">
+    <Grid RowDefinitions="*,Auto"><ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Mes parcelles" Style="{StaticResource H1}" />
+            <Label Text="Aucune parcelle enregistrée. Ajoutez-en une avec le GPS." Style="{StaticResource Muted}" IsVisible="{Binding IsEmpty}" />
+            <VerticalStackLayout Spacing="8" BindableLayout.ItemsSource="{Binding Parcels}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="3">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Text="{Binding Crop}" Style="{StaticResource Muted}" />
+                                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding CoordsText}" Style="{StaticResource Muted}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Button Text="+ Ajouter une parcelle GPS" Style="{StaticResource PrimaryButton}" Command="{Binding AddCommand}" />
+        </VerticalStackLayout>
+    </ScrollView><controls:BottomNav Grid.Row="1" Current="parcels" /></Grid>
+</ContentPage>
+

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns:controls="clr-namespace:PhytoGuard.Controls" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:PhytoGuard.ViewModels"
+             x:Class="PhytoGuard.Pages.AdvicePage" Title="Conseils">
+    <Grid RowDefinitions="*,Auto"><ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Conseils" Style="{StaticResource H1}" />
+            <Label Text="Bonnes pratiques" FontAttributes="Bold" FontSize="16" />
+            <VerticalStackLayout Spacing="6" BindableLayout.ItemsSource="{Binding Tips}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}" Padding="12">
+                            <Label Text="{Binding .}" />
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Label Text="Fiches de maladie (disponibles hors ligne)" FontAttributes="Bold" FontSize="16" Margin="0,8,0,0" />
+            <VerticalStackLayout Spacing="6" BindableLayout.ItemsSource="{Binding Diseases}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}" Padding="12">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AdviceViewModel}}, Path=OpenDiseaseCommand}" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Text="{Binding SubTitle}" Style="{StaticResource Muted}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Button Text="Consulter un spécialiste" Style="{StaticResource PrimaryButton}" Command="{Binding ExpertsCommand}" Margin="0,8,0,0" />
+            <Button Text="Se déconnecter" Style="{StaticResource SecondaryButton}" Command="{Binding LogoutCommand}" />
+        </VerticalStackLayout>
+    </ScrollView><controls:BottomNav Grid.Row="1" Current="advice" /></Grid>
+</ContentPage>
+

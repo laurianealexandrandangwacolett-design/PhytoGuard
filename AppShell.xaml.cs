@@ -1,26 +1,22 @@
-﻿namespace PhytoGuard;
+using PhytoGuard.Pages;
+
+namespace PhytoGuard;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
-{
-    InitializeComponent();
-	Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
-	Routing.RegisterRoute(nameof(ResetPasswordPage), typeof(ResetPasswordPage));
-    Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
-	Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
-	Routing.RegisterRoute(nameof(ParcelGpsPage), typeof(ParcelGpsPage));
-	Routing.RegisterRoute(nameof(TakePhotoPage), typeof(TakePhotoPage));
-	Routing.RegisterRoute(
-    nameof(GuidedSymptomsPage),
-    typeof(GuidedSymptomsPage));
-	Routing.RegisterRoute(nameof(ResultPage), typeof(ResultPage));
-	Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));
-	Routing.RegisterRoute(nameof(AdvicePage), typeof(AdvicePage));
-	Routing.RegisterRoute(nameof(ExpertsPage), typeof(ExpertsPage));
-Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
-Routing.RegisterRoute(nameof(ConfirmationPage), typeof(ConfirmationPage));
-Routing.RegisterRoute(nameof(AccountPage), typeof(AccountPage));
-Routing.RegisterRoute(nameof(ParcelsPage), typeof(ParcelsPage));
-}
+    public AppShell()
+    {
+        InitializeComponent();
+        Routing.RegisterRoute("login", typeof(LoginPage));
+        Routing.RegisterRoute("register", typeof(RegisterPage));
+        Routing.RegisterRoute("forgot", typeof(ForgotPasswordPage));
+        Routing.RegisterRoute("newparcel", typeof(NewParcelPage));
+        Routing.RegisterRoute("diagculture", typeof(DiagCulturePage));
+        Routing.RegisterRoute("diagphoto", typeof(DiagPhotoPage));
+        Routing.RegisterRoute("diagsymptoms", typeof(DiagSymptomsPage));
+        Routing.RegisterRoute("diagresult", typeof(DiagResultPage));
+        Routing.RegisterRoute("diseasedetail", typeof(DiseaseDetailPage));
+        Routing.RegisterRoute("experts", typeof(ExpertsPage));
+        Routing.RegisterRoute("payment", typeof(PaymentPage));
+    }
 }
